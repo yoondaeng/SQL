@@ -74,15 +74,6 @@ SELECT DATE_FORMAT('2019-09-16 20:23:12', '%Y-%m-%d')
     
     독일, 프랑스, 영국 출신이 아닌 모든 고객을 반환
     
-
-### **`distinct`**
-
-- 테이블 열에서 고유한 값만 반환
-
-```sql
-SELECT DISTINCT Country FROM Customers;
-```
-
 ### **`case 구문`**
 
 - 칼럼에 조건부여
@@ -125,7 +116,12 @@ order by CATEGORY
 ```
 
 ## `DISTINCT`
+- 테이블 열에서 고유한 값만 반환
 
+```sql
+SELECT DISTINCT Country FROM Customers;
+```
+### `DISTINCT 활용법`
 - COUNT()
     - 데이터의 개수를 세는 함수
 - `COUNT(DISTINCT [COL명])`
