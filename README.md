@@ -123,3 +123,26 @@ from PRODUCT
 group by CATEGORY # 상품 카테고리 코드별 상품 개수 구하기
 order by CATEGORY
 ```
+
+## `DISTINCT`
+
+- COUNT()
+    - 데이터의 개수를 세는 함수
+- `COUNT(DISTINCT [COL명])`
+    - `DISTINCT`로 중복을 제거해 해당 COL의 데이터 종류 개수 파악
+    - join을 하는 경우 중복된 데이터가 들어갈 수 있기에 `DISTINCT` 사용
+
+```sql
+SELECT 
+    year(o.SALES_DATE) as YEAR, 
+    month(o.SALES_DATE) as MONTH, 
+    u.GENDER, 
+    count(distinct u.USER_ID) as USERS
+from USER_INFO u
+join ONLINE_SALE o on u.USER_ID = o.USER_ID
+where u.GENDER is not null
+group by year(o.SALES_DATE), month(o.SALES_DATE), u.GENDER
+# 년, 월, 성별 별로 집계
+order by YEAR, MONTH, GENDER
+# order by 1, 2, 3 으로 해도 무방
+```
