@@ -121,7 +121,7 @@ order by CATEGORY
 ```sql
 SELECT DISTINCT Country FROM Customers;
 ```
-### `DISTINCT 활용법`
+### 활용법
 - COUNT()
     - 데이터의 개수를 세는 함수
 - `COUNT(DISTINCT [COL명])`
