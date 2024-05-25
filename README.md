@@ -142,3 +142,15 @@ group by year(o.SALES_DATE), month(o.SALES_DATE), u.GENDER
 order by YEAR, MONTH, GENDER
 # order by 1, 2, 3 으로 해도 무방
 ```
+
+## `join`
+- (INNER) JOIN
+     - 두 테이블 모두에서 일치하는 값이 있는 레코드를 반환
+- LEFT (OUTER) JOIN
+     - 왼쪽 테이블의 모든 레코드를, 오른쪽 테이블의 일치하는 레코드를 반환
+- RIGHT (OUTER) JOIN
+     - 오른쪽 테이블의 모든 레코드를 반환하고, 왼쪽 테이블의 일치하는 레코드를 반환
+- FULL (OUTER) JOIN
+     - 왼쪽 또는 오른쪽 테이블 중 하나에 일치하는 항목이 있는 경우 모든 레코드를 반환
+
+
