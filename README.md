@@ -154,3 +154,13 @@ order by YEAR, MONTH, GENDER
      - 왼쪽 또는 오른쪽 테이블 중 하나에 일치하는 항목이 있는 경우 모든 레코드를 반환
 
 
+## `ifnull`
+- 특정 컬럼의 값이 `null`인지 확인하고 null이면 N으로 바꿔줌
+### 예시
+- 냉동시설 여부가 `null`인 경우, N으로 출력
+```sql
+SELECT WAREHOUSE_ID, WAREHOUSE_NAME, ADDRESS, ifnull(FREEZER_YN, 'N')
+from FOOD_WAREHOUSE
+where ADDRESS like '경기도%'
+order by WAREHOUSE_ID
+```
