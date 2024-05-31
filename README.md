@@ -155,7 +155,7 @@ order by YEAR, MONTH, GENDER
 
 
 ## `ifnull`
-- 특정 컬럼의 값이 `null`인지 확인하고 null이면 N으로 바꿔줌
+- 특정 컬럼의 값이 `null`인지 확인하고 null인 경우 대체 값을 반환
 ### 예시
 - 냉동시설 여부가 `null`인 경우, N으로 출력
 ```sql
