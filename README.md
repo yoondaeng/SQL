@@ -19,6 +19,21 @@ GROUP BY Country
 HAVING COUNT(CustomerID) > 5;
 ```
 
+날짜 조건은 `HAVING` 대신 `WHERE`절을 사용
+
+`HAVING`은 그룹화 후의 조건에 사용
+`WHERE`는 그룹화 전의 기본 필터링에 사용
+
+```sql
+SELECT 
+    MCDP_CD as 진료과코드, 
+    count(*) as 5월예약건수
+from APPOINTMENT
+where month(APNT_YMD) = 5
+group by MCDP_CD
+order by 2, 1
+```
+
 ### `round(숫자, 자릿수)`
 
 - 결과값을 지정한 자릿수까지 반올림해줌
