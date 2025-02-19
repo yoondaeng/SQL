@@ -132,10 +132,12 @@ order by CATEGORY
 
 ## `DISTINCT`
 - 테이블 열에서 고유한 값만 반환
+- `DISTINCT` 자체가 `null`을 무시하므로 `WHERE NAME IS NOT NULL` 조건 X
 
 ```sql
 SELECT DISTINCT Country FROM Customers;
 ```
+
 ### 활용법
 - COUNT()
     - 데이터의 개수를 세는 함수
