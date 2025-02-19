@@ -132,10 +132,16 @@ order by CATEGORY
 
 ## `DISTINCT`
 - 테이블 열에서 고유한 값만 반환
-- `DISTINCT` 자체가 `null`을 무시하므로 `WHERE NAME IS NOT NULL` 조건 X
-
 ```sql
 SELECT DISTINCT Country FROM Customers;
+```
+
+- 이름이 NULL인 경우는 집계하지 않으며 중복되는 이름은 하나로 침
+- `DISTINCT` 자체가 `null`을 무시하므로 `WHERE NAME IS NOT NULL` 조건 필요없음
+
+```sql
+SELECT count(distinct NAME) as count
+from ANIMAL_INS
 ```
 
 ### 활용법
