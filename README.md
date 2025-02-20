@@ -175,6 +175,18 @@ order by YEAR, MONTH, GENDER
      - 오른쪽 테이블의 모든 레코드를 반환하고, 왼쪽 테이블의 일치하는 레코드를 반환
 - FULL (OUTER) JOIN
      - 왼쪽 또는 오른쪽 테이블 중 하나에 일치하는 항목이 있는 경우 모든 레코드를 반환
+### 예시
+- `2022년 10월에 작성된 게시글` 제목, 게시글 ID, 댓글 ID, 댓글 작성자 ID, 댓글 내용, 댓글 작성일을 조회하는 SQL문
+- 결과는 댓글 작성일을 기준으로 오름차순 정렬
+- 댓글 작성일이 같다면 게시글 제목을 기준으로 오름차순 정렬
+- `2022년 10월에 작성된 게시글`이므로 board b를 기준으로 where절 작성
+```sql
+SELECT b.TITLE, b.BOARD_ID, r.REPLY_ID, r.WRITER_ID, r.CONTENTS, date_format(r.CREATED_DATE, '%Y-%m-%d') as CREATED_DATE
+from USED_GOODS_BOARD b 
+join USED_GOODS_REPLY r on b.BOARD_ID = r.BOARD_ID 
+where b.CREATED_DATE like "2022-10%"
+order by r.CREATED_DATE, b.TITLE
+```
 
 
 ## `ifnull`
