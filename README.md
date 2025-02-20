@@ -129,6 +129,18 @@ from PRODUCT
 group by CATEGORY # 상품 카테고리 코드별 상품 개수 구하기
 order by CATEGORY
 ```
+## `limit`
+
+- 처음 n개 반환
+- 가장 큰 물고기 10마리의 ID와 길이를 출력하는 SQL 문
+
+```sql
+select ID, LENGTH
+from FISH_INFO
+where LENGTH is not null
+order by LENGTH desc, ID
+limit 10
+```
 
 ## `DISTINCT`
 - 테이블 열에서 고유한 값만 반환
