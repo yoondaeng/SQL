@@ -187,3 +187,12 @@ from FOOD_WAREHOUSE
 where ADDRESS like '경기도%'
 order by WAREHOUSE_ID
 ```
+
+## `concat`
+- 문자열을 입력한 순서대로 합치는 함수
+- FISH_INFO 테이블에서 잡은 물고기 중 가장 큰 물고기의 길이를 'cm' 를 붙여 출력하는 SQL 문
+```sql
+select distinct CONCAT(LENGTH, 'cm') as MAX_LENGTH
+from FISH_INFO
+where LENGTH = (select max(LENGTH) from FISH_INFO)
+```
