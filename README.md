@@ -37,9 +37,12 @@ order by 2, 1
 ### `round(숫자, 자릿수)`
 
 - 결과값을 지정한 자릿수까지 반올림해줌
+
+  
 - 평균을 소수점 두번째 자리에서 반올림
+
+  
     - round(avg(), 1)
-    
     ```sql
     SELECT CAR_ID, round(avg(datediff(END_DATE, START_DATE) + 1), 1) as AVERAGE_DURATION
     from CAR_RENTAL_COMPANY_RENTAL_HISTORY
@@ -47,7 +50,17 @@ order by 2, 1
     having AVERAGE_DURATION >= 7
     order by AVERAGE_DURATION desc, CAR_ID desc
     ```
-    
+### `truncate()`
+- 자리수 버리는 함수
+- TRUNCATE(number, decimals)
+
+  
+  ```sql
+  SELECT truncate(PRICE, -4) as PRICE_GROUP, count(*) as PRODUCTS
+  from PRODUCT
+  group by 1
+  order by 1
+  ```
 
 ## ✨Date → Str 형 변환
 
