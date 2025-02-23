@@ -37,6 +37,14 @@ group by u.USER_ID, u.NICKNAME, u.CITY, u.STREET_ADDRESS1, u.STREET_ADDRESS2, u.
 having count(b.WRITER_ID) >= 3
 order by 1 desc
 ```
+- MySQL에서 `+`는 숫자 덧셈에 사용
+- 문자열을 `+` 연결하려고 하면 MySQL은 문자열을 숫자로 변환하려고 시도하고, 변환할 수 없는 경우 0으로 처리
+- 문자열 연결을 위해서는 반드시 `CONCAT` 함수 사용
+  ### 예시
+  ```sql
+  left(TLNO, 3) + '-' + mid(TLNO, 4, 4) + '-' + right(TLNO, 4) # X
+  CONCAT(left(TLNO, 3), '-', mid(TLNO, 4, 4), '-', right(TLNO, 4)) # O
+  ```
 
 날짜 조건은 `HAVING` 대신 `WHERE`절을 사용
 
