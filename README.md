@@ -19,6 +19,25 @@ GROUP BY Country
 HAVING COUNT(CustomerID) > 5;
 ```
 
+- `having`이 꼭 `group by`와 함께 써야하는 것은 아님
+- 개별 그룹에 대한 집계가 필요한 경우에 `group by-having`절 필요
+- `group by` 없이 `having`만 사용하면 전체 데이터를 하나의 그룹으로 봄
+  
+[프로그래머스 | 조건에 맞는 사용자 정보 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/164670)
+
+```sql
+SELECT 
+    u.USER_ID, 
+    u.NICKNAME, 
+    concat(u.CITY, ' ', u.STREET_ADDRESS1, ' ', u.STREET_ADDRESS2) as 전체주소,
+    concat(left(TLNO, 3), '-', mid(TLNO, 4, 4), '-', right(TLNO, 4)) as 전화번호
+from USED_GOODS_BOARD b
+join USED_GOODS_USER u on b.WRITER_ID = u.USER_ID
+group by u.USER_ID, u.NICKNAME, u.CITY, u.STREET_ADDRESS1, u.STREET_ADDRESS2, u.TLNO
+having count(b.WRITER_ID) >= 3
+order by 1 desc
+```
+
 날짜 조건은 `HAVING` 대신 `WHERE`절을 사용
 
 `HAVING`은 그룹화 후의 조건에 사용
