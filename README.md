@@ -229,3 +229,32 @@ select distinct CONCAT(LENGTH, 'cm') as MAX_LENGTH
 from FISH_INFO
 where LENGTH = (select max(LENGTH) from FISH_INFO)
 ```
+
+## `서브쿼리`
+- SQL 쿼리 안에 있는 또 다른 쿼리
+- 주로 () 괄호로 묶어서 표현
+### 예시
+- 음식종류별로 즐겨찾기수가 가장 많은 식당의 음식 종류, ID, 식당 이름, 즐겨찾기수를 조회하는 SQL문
+- 음식 종류를 기준으로 내림차순 정렬
+```sql
+SELECT 
+    FOOD_TYPE, 
+    REST_ID, 
+    REST_NAME, 
+    FAVORITES
+from REST_INFO r1
+where FAVORITES = (
+    select max(FAVORITES)
+    from REST_INFO r2
+    where r2.FOOD_TYPE = r1.FOOD_TYPE
+)
+order by FOOD_TYPE desc
+```
+1. 서브쿼리: `(SELECT MAX(FAVORITES) FROM REST_INFO r2 WHERE r2.FOOD_TYPE = r1.FOOD_TYPE)`
+   <br>
+   - 서브쿼리를 사용하여 각 음식 종류별로 최대 즐겨찾기 수 찾기
+  
+     
+3. 메인 쿼리
+   <br>
+   - 서브쿼리에서 찾은 최대값과 일치하는 레코드 선택
