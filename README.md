@@ -285,3 +285,21 @@ order by FOOD_TYPE desc
 3. 메인 쿼리
    <br>
    - 서브쿼리에서 찾은 최대값과 일치하는 레코드 선택
+### [프로그래머스 | 헤비 유저가 소유한 장소](https://school.programmers.co.kr/learn/courses/30/lessons/77487)
+```sql
+SELECT ID, NAME, HOST_ID
+from PLACES
+where HOST_ID in (
+    select HOST_ID
+    from PLACES
+    group by HOST_ID
+    having count(*) >= 2
+)
+order by ID
+```
+1. 서브쿼리에서 공간을 2개 등록한 유저 `HOST_ID` 찾기
+   - `group by HOST_ID` 호스트ID로 그룹화
+   - `having count(*) >= 2` 등록한 공간이 2개 이상인 경우
+2. 메인 쿼리
+   - `WHERE HOST_ID IN (...)` 서브쿼리에서 찾은 헤비 유저 목록에 있는 레코드 반환
+<br>
