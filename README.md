@@ -304,7 +304,7 @@ order by ID
    - `WHERE HOST_ID IN (...)` 서브쿼리에서 찾은 헤비 유저 목록에 있는 레코드 반환
 <br>
 
-
+### 수정중
 ```sql
 SELECT CATEGORY, PRICE as MAX_PRICE, PRODUCT_NAME
 from FOOD_PRODUCT
