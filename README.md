@@ -303,3 +303,16 @@ order by ID
 2. 메인 쿼리
    - `WHERE HOST_ID IN (...)` 서브쿼리에서 찾은 헤비 유저 목록에 있는 레코드 반환
 <br>
+
+
+```sql
+SELECT CATEGORY, PRICE as MAX_PRICE, PRODUCT_NAME
+from FOOD_PRODUCT
+where PRICE in 
+(
+    select max(PRICE) from FOOD_PRODUCT group by CATEGORY)
+    and 
+    CATEGORY in ('과자', '국', '김치', '식용유')
+    
+order by 2 desc
+```
