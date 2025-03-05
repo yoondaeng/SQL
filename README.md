@@ -8,6 +8,26 @@
     - MAX() : 행 안에 있는 값의 최댓값
     - SUM() : 행 안에 있는 값의 합
 
+### [서울에 위치한 식당 목록 출력하기](https://school.programmers.co.kr/learn/courses/30/lessons/131118)
+```sql
+SELECT 
+    i.REST_ID, 
+    i.REST_NAME, 
+    i.FOOD_TYPE, 
+    i.FAVORITES, 
+    i.ADDRESS, 
+    round(avg(r.REVIEW_SCORE), 2) as SCORE
+from REST_INFO i
+join REST_REVIEW r on i.REST_ID = r.REST_ID
+where i.ADDRESS like '서울%'
+group by 1
+order by 6 desc, 4 desc;
+```
+- 주의점
+  - SELECT 절에 avg(r.REVIEW_SCORE)라는 집계 함수 존재
+  - 그룹화를 지정하지 않으면, 모든 행이 하나의 그룹으로 취급
+  - 따라서 하나의 행만 반환하고 싶은 것이 아니면 `group by` 추가할 것
+
 ### `having`
 
 - `where`은 집계함수와 함께 사용할 수 없으므로 `having` 을 사용
@@ -23,7 +43,7 @@ HAVING COUNT(CustomerID) > 5;
 - 개별 그룹에 대한 집계가 필요한 경우에 `group by-having`절 필요
 - `group by` 없이 `having`만 사용하면 전체 데이터를 하나의 그룹으로 봄
   
-[프로그래머스 | 조건에 맞는 사용자 정보 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/164670)
+### [프로그래머스 | 조건에 맞는 사용자 정보 조회하기](https://school.programmers.co.kr/learn/courses/30/lessons/164670)
 
 ```sql
 SELECT 
@@ -76,7 +96,7 @@ order by 2, 1
     ```
 ### `truncate(number, decimals)`
 - 자리수 버리는 함수
-- [프로그래머스 | 가격대별 상품 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/131530)  
+### [프로그래머스 | 가격대별 상품 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/131530)  
   ```sql
   SELECT truncate(PRICE, -4) as PRICE_GROUP, count(*) as PRODUCTS
   from PRODUCT
@@ -304,7 +324,6 @@ order by ID
    - `WHERE HOST_ID IN (...)` 서브쿼리에서 찾은 헤비 유저 목록에 있는 레코드 반환
 <br>
 
-### 작성중
 ```sql
 SELECT CATEGORY, PRICE as MAX_PRICE, PRODUCT_NAME
 from FOOD_PRODUCT
@@ -316,3 +335,7 @@ where PRICE in
     
 order by 2 desc
 ```
+1. 서브쿼리
+   - '과자', '국', '김치', '식용유' 카테고리 별로 가장 비싼 가격
+2. 메인쿼리
+   - 서브쿼리에서 찾은 카테고리, 최대 가격, 상품 이름 반환
