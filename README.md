@@ -8,7 +8,7 @@
     - MAX() : 행 안에 있는 값의 최댓값
     - SUM() : 행 안에 있는 값의 합
 
-### 프로그래머스 | [서울에 위치한 식당 목록 출력하기](https://school.programmers.co.kr/learn/courses/30/lessons/131118)
+### [프로그래머스 | 서울에 위치한 식당 목록 출력하기](https://school.programmers.co.kr/learn/courses/30/lessons/131118)
 ```sql
 SELECT 
     i.REST_ID, 
