@@ -339,3 +339,46 @@ order by 2 desc
    - '과자', '국', '김치', '식용유' 카테고리 별로 가장 비싼 가격
 2. 메인쿼리
    - 서브쿼리에서 찾은 카테고리, 최대 가격, 상품 이름 반환
+  
+## `Common Table Experssion(CTE)`
+- with 구문은 메모리 상에 가상의 테이블을 저장할 때 사용
+- recursive의 여부에 따라 재귀, 비재귀 2가지 방법으로 사용 가능
+  - `with`
+    ```sql
+    WITH CTE AS (
+    SELECT 0 AS NUM
+    UNION ALL
+    SELECT 0 FROM SOME_TABLE # SOME_TABLE의 행 수만큼 반복된다.
+    )
+    ```
+  - `with recursive`
+    ```sql
+    WITH RECURSIVE CTE AS (
+    SELECT 0 AS NUM
+    UNION ALL
+    SELECT NUM+1 FROM CTE
+    WEHRE NUM < 10 # 반복을 멈추는 조건
+    )
+    ```
+### [프로그래머스 | 입양 시각 구하기(2)](https://school.programmers.co.kr/learn/courses/30/lessons/59413)  
+```sql
+with recursive hours as (
+    select 0 as h
+    union all
+    select h+1 from hours
+    where h < 23
+)
+
+SELECT a.h as HOUR, count(b.ANIMAL_ID) as COUNT
+from hours as a 
+left join ANIMAL_OUTS as b on a.h = hour(b.DATETIME)
+group by 1
+order by 1
+```
+- recursive 이용해서 가상 테이블 형성하기
+    - 재귀를 이용해서 0 ~ 23 까지 +1 씩 해서 하나의 컬럼을 형성
+- 가상 테이블 hours
+    - animal_outs 테이블과 left join
+    - 이렇게 해야 0 ~ 23 까지 시간이 모두 반환
+- count(*) 가 아닌 `count(animal_outs.animal_id)` 인 이유
+    - 실제 데이터인 animal_outs의 수를 집계하기 위해서 전체 집계를 하게 되면 임시의 테이블 컬럼도 집계가 되기때문에 0이 아닌 1이 나오게 됨.
