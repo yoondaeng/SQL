@@ -255,6 +255,42 @@ where b.CREATED_DATE like "2022-10%"
 order by r.CREATED_DATE, b.TITLE
 ```
 
+## `union all`
+- 두 개 이상의 select문 결과를 하나로 결합할 때 사용
+- 구조가 유사한 여러 테이블의 데이터 결합
+- `union`은 중복을 제거 `union all`은 중복 제거 없이 모든 결과 포함
+### [프로그래머스 | 오프라인/온라인 판매 데이터 통합하기](https://school.programmers.co.kr/learn/courses/30/lessons/131537)  
+```sql
+SELECT 
+    date_format(SALES_DATE, '%Y-%m-%d') as SALES_DATE, 
+    PRODUCT_ID, 
+    USER_ID,
+    SALES_AMOUNT
+from (
+    select
+        SALES_DATE,
+        PRODUCT_ID, 
+        USER_ID,
+        SALES_AMOUNT
+    from ONLINE_SALE
+    where year(SALES_DATE) = 2022 and month(SALES_DATE) = 3
+    
+    union all
+    
+    select
+        SALES_DATE,
+        PRODUCT_ID, 
+        NULL as USER_ID,
+        SALES_AMOUNT
+    from OFFLINE_SALE
+    where year(SALES_DATE) = 2022 and month(SALES_DATE) = 3
+) as combined
+order by 1, 2, 3
+```
+1. ONLINE_SALE과 OFFLINE_SALE 테이블에서 2022년 3월 데이터만 선택
+2. OFFLINE_SALE의 USER_ID는 NULL로 설정
+3. 두 결과를 UNION ALL로 결합
+4. 날짜, 상품 ID, 사용자 ID 순으로 오름차순 정렬
 
 ## `ifnull`
 - 특정 컬럼의 값이 `null`인지 확인하고 null인 경우 대체 값을 반환
