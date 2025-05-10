@@ -292,6 +292,29 @@ order by 1, 2, 3
 3. 두 결과를 UNION ALL로 결합
 4. 날짜, 상품 ID, 사용자 ID 순으로 오름차순 정렬
 
+## `if`
+```sql
+SELECT IF(500<1000, "YES", "NO");
+```
+### `IF(condition, value_if_true, value_if_false)`
+if문의 조건이 True면 두번째값, False면 세번째값
+### [🔗 특정 조건을 만족하는 물고기별 수와 최대 길이 구하기](https://school.programmers.co.kr/learn/courses/30/lessons/298519)
+```sql
+select 
+    count(*) as FISH_COUNT, 
+    max(LENGTH) as MAX_LENGTH, 
+    FISH_TYPE
+from FISH_INFO
+group by 3
+having avg(if(ifnull(LENGTH, 0) < 10, 10, LENGTH)) >= 33
+order by 3
+```
+- if()안에 ifnull 활용
+- 조건: 10cm 이하의 물고기들은 10cm로 취급하여 평균 길이 구하기
+- 10cm 이하인 경우
+    - length가 null일 때
+- length가 null이면 0으로 보고 10cm 이하이므로 10cm로 취급하고 평균 구하기
+
 ## `ifnull`
 - 특정 컬럼의 값이 `null`인지 확인하고 null인 경우 대체 값을 반환
 ### 예시
