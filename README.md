@@ -121,6 +121,9 @@ SELECT DATE_FORMAT('2019-09-16 20:23:12', '%Y-%m-%d')
     - 시작일이 5월 7일, 종료일이 5월 10일이라면, 대여기간은 4일
     - `datediff(END_DATE, START_DATE) + 1`
 
+### **`TIMEDIFF(시간1, 시간2)`**
+- 두 시간 간의 차이
+
 ### **`in / not in`**
 
 - `in`
