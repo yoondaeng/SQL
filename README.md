@@ -446,3 +446,24 @@ order by 1
     - 이렇게 해야 0 ~ 23 까지 시간이 모두 반환
 - count(*) 가 아닌 `count(animal_outs.animal_id)` 인 이유
     - 실제 데이터인 animal_outs의 수를 집계하기 위해서 전체 집계를 하게 되면 임시 테이블 컬럼도 집계가 되기때문에 0이 아닌 1이 나오게 됨.
+
+## `Create Table As Select (CTAS)`
+기존 테이블이나 쿼리 결과를 기반으로 새로운 테이블을 생성할 때 사용하는 구문
+
+```sql
+CREATE TABLE 새_테이블명 AS
+SELECT ...
+FROM 기존_테이블
+WHERE 조건;
+59413)  
+```
+✅ 컬럼 구조
+SELECT에 지정된 컬럼 구조로 새 테이블 생성
+✅ 데이터
+SELECT 결과 데이터가 새 테이블에 삽입됨
+❌ 제약조건
+PK, FK, NOT NULL 등의 제약조건은 복사되지 않음
+✅ 성능
+대용량 데이터를 임시 분석하거나 백업할 때 효율적
+
+
